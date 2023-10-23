@@ -14,7 +14,7 @@ jobs:
         uses: actions/checkout@v3
       - name: Run Snyk SAST scan
         run:
-          npx snyk auth ${{ secrets.SNYK_API_KEY }}
+          npx snyk auth ${{ secrets.SNYK_TOKEN }}
           
           npx snyk code test --sarif-file-output=/home/runner/report.json ./
           
