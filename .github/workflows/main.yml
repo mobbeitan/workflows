@@ -25,4 +25,4 @@ jobs:
         with:
           report-file: "/home/runner/report.json"
           api-key: ${{ secrets.MOBB_APY_KEY }}
-          github-token: ${{ secrets.GITHUB_TOKEN }}
+          github-token: ${{ secrets.GH_TOKEN }}
