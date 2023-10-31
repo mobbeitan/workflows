@@ -15,6 +15,7 @@ public class SQLInjectionExample extends HttpServlet {
             Statement stmt = con.createStatement();
 
             stmt.executeQuery(query);
+            
         } catch (Exception e) {
             throw new ServletException(e);
         }
