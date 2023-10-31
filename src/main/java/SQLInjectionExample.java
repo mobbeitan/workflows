@@ -14,6 +14,7 @@ public class SQLInjectionExample extends HttpServlet {
             String query = "SELECT * FROM users WHERE username = '" + request.getParameter("username") + "';";
             Statement stmt = con.createStatement();
 
+            
             stmt.executeQuery(query);
         } catch (Exception e) {
             throw new ServletException(e);
