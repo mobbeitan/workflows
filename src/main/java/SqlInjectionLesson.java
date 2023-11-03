@@ -114,6 +114,7 @@ public class SqlInjectionLesson5b extends AssignmentEndpoint {
               .output("Your query was: " + queryString.replace("?", login_count))
               .build();
         }
+        
       } catch (SQLException sqle) {
 
         return failed(this)
