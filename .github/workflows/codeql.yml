@@ -1,0 +1,45 @@
+on: [pull_request]
+
+permissions:
+  contents: read
+  checks: write
+  actions: write
+  statuses: write
+
+jobs:
+  test_codeql:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup Java on this machine
+        uses: actions/setup-java@v3
+        with:
+          distribution: "oracle"
+          java-version: "19"
+      - name: Setup Maven on this machine
+        uses: stCarolas/setup-maven@v4.5
+        with:
+          maven-version: 3.8.6
+
+      - name: Checkout repo to get code
+        uses: actions/checkout@v3
+
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@v2
+        with:
+          languages: java
+
+      - name: Run CodeQL autobuild
+        uses: github/codeql-action/autobuild@v2
+
+      - name: Run CodeQL SAST scan
+        uses: github/codeql-action/analyze@v2
+        with:
+          output: ../results
+
+      - name: Run Mobb on the findings and get fixes
+        if: always()
+        uses: mobb-dev/action@v1
+        with:
+          report-file: ../results/java.sarif
+          api-key: ${{ secrets.MOBB_API_TOKEN }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
