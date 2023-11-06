@@ -79,6 +79,7 @@ public class SqlInjectionLesson5b extends AssignmentEndpoint {
             .build();
       }
 
+        
       query.setInt(1, count);
       // String query = "SELECT * FROM user_data WHERE Login_Count = " + login_count + " and userid
       // = " + accountName, ;
