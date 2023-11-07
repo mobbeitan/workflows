@@ -20,6 +20,7 @@
  * Source for this application is maintained at https://github.com/WebGoat/WebGoat, a repository for free software projects.
  */
 
+ 
 package org.owasp.webgoat.lessons.sqlinjection.introduction;
 
 import jakarta.servlet.http.HttpServletRequest;
