@@ -25,7 +25,8 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Run SAST scan
-        run: /tmp/cx/cx scan create --project-name my-test-project -s ./ --file-filter '!.github' --report-format json --scan-types sast --branch nobranch
+        run: /tmp/cx/cx scan create --project-name my-test-project -s ./ --file-filter '!.github' --report-format json --scan-types sast --branch nobranch  --threshold "sast-high=1" 
+        shell: bash -l {0}
 
       - name: Run Mobb on the findings and get fixes
         if: failure()
