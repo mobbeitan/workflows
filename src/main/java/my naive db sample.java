@@ -7,6 +7,7 @@ import java.sql.DriverManager;
 import java.sql.Statement;
 
 public class SQLInjectionExample extends HttpServlet {
+    
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException {
         try {
             Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/db");
