@@ -1,3 +1,6 @@
+
+name: "Mobb / Snyk"
+
 on: [pull_request]
 permissions:
       actions: write
