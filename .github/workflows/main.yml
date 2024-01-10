@@ -21,7 +21,7 @@ jobs:
         shell: bash -l {0}
       - name: Run Mobb on the findings and get fixes
         if: failure()
-        uses: yhaggai/action@main
+        uses: mobb-dev/action@beta0.0.4
         with:
           report-file: "/home/runner/report.json"
           api-key: ${{ secrets.MOBB_API_TOKEN }}
