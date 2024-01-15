@@ -1,10 +1,10 @@
 on: [pull_request]
-
 permissions:
-  contents: read
-  checks: write
-  actions: write
-  statuses: write
+      actions: write
+      checks: write
+      contents: write
+      pull-requests: write
+      statuses: write
 
 jobs:
   test_codeql:
@@ -38,8 +38,10 @@ jobs:
 
       - name: Run Mobb on the findings and get fixes
         if: always()
-        uses: mobb-dev/action@v1
+        uses: mobb-dev/action@beta0.0.4
         with:
           report-file: ../results/java.sarif
           api-key: ${{ secrets.MOBB_API_TOKEN }}
           github-token: ${{ secrets.GITHUB_TOKEN }}
+          scanner: codeql
+          mobb-project-name: Action
