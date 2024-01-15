@@ -1,10 +1,10 @@
 on: [pull_request]
-
 permissions:
-  contents: read
-  checks: write
-  actions: write
-  statuses: write
+      actions: write
+      checks: write
+      contents: write
+      pull-requests: write
+      statuses: write
 
 jobs:
   test_cx:
@@ -25,12 +25,15 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Run Cx SAST scan
-        run: /tmp/cx/cx scan create --project-name my-test-project -s ./ --file-filter '!.github' --report-format json --scan-types sast --branch nobranch
+        run: /tmp/cx/cx scan create --project-name my-test-project -s ./ --file-filter '!.github' --report-format json --scan-types sast --branch nobranch   --threshold "sast-high=1"
 
+        shell: bash -l {0}
       - name: Run Mobb on the findings and get fixes
         if: always()
-        uses: mobb-dev/action@v1
+        uses: mobb-dev/action@beta0.0.4
         with:
           report-file: "cx_result.json"
           api-key: ${{ secrets.MOBB_API_TOKEN }}
           github-token: ${{ secrets.GITHUB_TOKEN }}
+          scanner: checkmarx
+          mobb-project-name: Action
