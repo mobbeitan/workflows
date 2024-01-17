@@ -1,3 +1,4 @@
+import java.sql.PreparedStatement;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -18,10 +19,11 @@ public class SQLInjectionExample extends HttpServlet {
             stmt.executeQuery(query);
 
             
-            String query2 = "SELECT * FROM users WHERE username = '" + user + "';";
-            Statement stmt2 = con.createStatement();
+            String query2 = "SELECT * FROM users WHERE username = ?;";
+            PreparedStatement stmt2 = con.prepareStatement(query2);
 
-            stmt2.executeQuery(query2);
+            stmt2.setString(1, user);
+            stmt2.executeQuery();
         } catch (Exception e) {
             throw new ServletException(e);
         }
