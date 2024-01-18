@@ -20,7 +20,7 @@ jobs:
           
         shell: bash -l {0}
       - name: Run Mobb on the findings and get fixes
-        if: failure()
+        if: all()
         uses: mobb-dev/action@beta0.0.4
         with:
           report-file: "/home/runner/report.json"
