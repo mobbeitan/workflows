@@ -30,7 +30,7 @@ jobs:
         shell: bash -l {0}
       - name: Run Mobb on the findings and get fixes
         if: always()
-        uses: mobb-dev/action@beta0.0.4
+        uses: mobb-dev/action@beta0.0.5
         with:
           report-file: "cx_result.json"
           api-key: ${{ secrets.MOBB_API_TOKEN }}
